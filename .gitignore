@@ -1,2 +1,5 @@
 node_modules
+.terraform
+*lock.hcl
+*.zip
 cloud/scraper/config.js
