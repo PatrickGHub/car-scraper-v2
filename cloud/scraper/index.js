@@ -50,6 +50,7 @@ const handler = async (event, context) => {
       carId: vehicle.decodedCarId,
       listingDate: vehicle.dateOffer,
       updatedDate: vehicle.lastChange,
+      dateFound: formattedDate,
       price: vehicle.typedPrices[0].amount,
       modelYear: vehicle.modelYear,
       mileage: vehicle.used.mileage,

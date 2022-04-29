@@ -24,7 +24,7 @@ const saveToDatabase = async (cars) => {
     console.log(`Saving ${cars.length} vehicles to the database`)
 
     for (const vehicle of cars) {
-      const text = 'INSERT INTO cars (manufacturer, model, body_type, car_id, listing_date, updated_date, price, mileage, model_year, gearbox, engine, sold_by, post_code) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *';
+      const text = 'INSERT INTO cars (manufacturer, model, body_type, car_id, listing_date, updated_date, date_found, price, mileage, model_year, gearbox, engine, sold_by, post_code) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING *';
       const values = [
         vehicle.manufacturer,
         vehicle.model,
@@ -32,6 +32,7 @@ const saveToDatabase = async (cars) => {
         vehicle.carId,
         vehicle.listingDate,
         vehicle.updatedDate,
+        vehicle.dateFound,
         vehicle.price,
         vehicle.mileage,
         vehicle.modelYear,
