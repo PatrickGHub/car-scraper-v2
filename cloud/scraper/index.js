@@ -2,6 +2,8 @@ const axios = require('axios')
 const { saveToDatabase } = require('./database.js')
 
 const handler = async (event, context) => {
+  context.callbackWaitsForEmptyEventLoop = false;
+
   const models = [
     's3sb',
     's3limo',
@@ -34,7 +36,9 @@ const handler = async (event, context) => {
 
   const url = `https://scs.audi.de/api/v2/search/filter/auuc/en?${svd}${size}${preset}${filter}`
 
+  console.log('Getting data')
   const { data } = await axios.get(url)
+  console.log('Got data')
 
   const foundCars = data.vehicleBasic.map((vehicle) => {
     return {
@@ -55,6 +59,7 @@ const handler = async (event, context) => {
   })
 
   await saveToDatabase(foundCars)
+  return 'Complete'
 }
 
 module.exports = { handler }
