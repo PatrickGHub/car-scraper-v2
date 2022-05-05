@@ -1,0 +1,29 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "rules": {
+    "import/no-extraneous-dependencies": [2, {
+      "devDependencies": true
+    }],
+    "import/prefer-default-export": "off",
+    "jsx-quotes": [2, "prefer-single"],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/jsx-one-expression-per-line": [0]
+  },
+  "plugins": [
+    "react",
+    "react-hooks"
+  ],
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
+    }
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "jest": true,
+    "es6": true
+  }
+}
