@@ -1,6 +1,7 @@
 import data from '../cars.json'
+import PriceUpdatesTable from '../components/PriceUpdatesTable'
 
-const Home = () => {
+const groupByVin = (data) => {
   const formattedData = {}
 
   data.map((car) => {
@@ -15,7 +16,11 @@ const Home = () => {
 
   })
 
-  console.log('\n---------- LOGGING formattedData ----------\n', formattedData)
+  return formattedData
+}
+
+const Home = () => {
+  const formattedData = groupByVin(data)
 
   return (
     <div>
@@ -23,16 +28,9 @@ const Home = () => {
         Object.keys(formattedData).map((carId) => {
           return (
             <div style={{marginBottom: '1em'}}>
-              { carId } { formattedData[carId][0].model } 
-              {
-                formattedData[carId].map((listing) => {
-                  return (
-                    <div>
-                      ${ listing.price } - { listing.date_found }
-                    </div>
-                  )
-                })
-              }
+              <p>{ carId }</p>
+              <p>{ formattedData[carId][0].model }</p>
+              <PriceUpdatesTable rows={formattedData[carId]} />
             </div>
           )
         })
