@@ -1,3 +1,4 @@
+import './scss/main.scss'
 import Home from './Home'
 
 const App = () => {
