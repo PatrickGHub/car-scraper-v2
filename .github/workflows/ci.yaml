@@ -35,10 +35,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Install dependencies 👨🏻‍💻
+        working-directory: ./frontend
         run: npm ci --prefer-offline --no-audit
 
       # - name: Run tests 🧪
       #   run: npm run test
 
       - name: Run linter
-        run: cd frontend && npm run lint
+        working-directory: ./frontend
+        run: npm run lint
