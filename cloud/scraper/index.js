@@ -1,6 +1,5 @@
 const axios = require('axios')
 const AWS = require('aws-sdk')
-const { saveToDatabase } = require('./database.js')
 
 const s3 = new AWS.S3()
 
