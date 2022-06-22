@@ -1,8 +1,18 @@
 const axios = require('axios')
+const AWS = require('aws-sdk')
 const { saveToDatabase } = require('./database.js')
+
+const s3 = new AWS.S3()
 
 const handler = async (event, context) => {
   context.callbackWaitsForEmptyEventLoop = false;
+
+  const s3Object = await s3.getObject({
+    Bucket: 'car-scraper-bucket',
+    Key: 'cars.json'
+  }).promise()
+
+  const carsInS3 = JSON.parse(s3Object.Body.toString('utf-8'))
 
   const models = [
     's3sb',
@@ -59,7 +69,12 @@ const handler = async (event, context) => {
     }
   })
 
-  await saveToDatabase(foundCars)
+  await s3.putObject({
+    Bucket: 'car-scraper-bucket',
+    Key: 'cars.json',
+    Body: JSON.stringify([...carsInS3, ...foundCars])
+  }).promise()
+
   return 'Complete'
 }
 
