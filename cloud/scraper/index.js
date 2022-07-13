@@ -14,10 +14,13 @@ const handler = async (event, context) => {
   const carsInS3 = JSON.parse(s3Object.Body.toString('utf-8'))
 
   const models = [
+    'a3sb',
+    'a3limo',
     's3sb',
     's3limo',
     'rs3sb',
     'rs3limo',
+    'a4limo',
     's4limo',
     'rs4avant',
     'rs5sb',

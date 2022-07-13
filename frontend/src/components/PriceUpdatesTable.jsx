@@ -15,9 +15,9 @@ const PriceUpdatesTable = ({ rows }) => {
           {
             rows.map((listing) => {
               return (
-                <TableRow key={`${listing.car_id}${listing.date_found}`} >
+                <TableRow key={`${listing.carId}${listing.dateFound}`} >
                   <TableCell>${ listing.price }</TableCell>
-                  <TableCell>{ listing.date_found }</TableCell>
+                  <TableCell>{ listing.dateFound }</TableCell>
                 </TableRow>
               )
             })

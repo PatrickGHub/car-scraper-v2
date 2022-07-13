@@ -5,17 +5,17 @@ const groupByVin = (data) => {
   const dataGroupedByVin = {}
 
   data.map((car) => {
-    if (!dataGroupedByVin[car.car_id]) {
-      return dataGroupedByVin[car.car_id] = [{ ...car }]
+    if (!dataGroupedByVin[car.carId]) {
+      return dataGroupedByVin[car.carId] = [{ ...car }]
     }
 
-    dataGroupedByVin[car.car_id] = [
-      ...dataGroupedByVin[car.car_id],
+    dataGroupedByVin[car.carId] = [
+      ...dataGroupedByVin[car.carId],
       { ...car }
     ]
     
-    return dataGroupedByVin[car.car_id].sort((a, b) => {
-      return new Date(b.date_found) - new Date(a.date_found)
+    return dataGroupedByVin[car.carId].sort((a, b) => {
+      return new Date(b.dateFound) - new Date(a.dateFound)
     })
   })
 
